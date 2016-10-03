@@ -1,0 +1,32 @@
+<md-content>
+    <div style="padding-bottom: 60px;">
+
+        <md-card ng-repeat="message in $ctrl.messages" class="md-padding" ng-class="{'textRight': message.author == author}" >
+            <label ng-show="$ctrl.messages[$index - 1].author != message.author"><b>{{message.author}}:</b></label>
+            <p>{{message.text}}</p>
+        </md-card>
+    </div>
+    <md-toolbar layout="row" class="md-whiteframe-3dp" style="position: fixed; left:0; bottom:0;">
+        <div class="md-toolbar-tools">
+            <form name="messageForm" ng-submit="$ctrl.sendMessage(author, text);" layout="row" flex="100">
+                <md-input-container flex="20">
+                    <input ng-maxlength="30" required name="author" ng-model="author" placeholder="Autor">
+                    <div ng-messages="messageForm.author.$error">
+                        <div ng-message="required">El autor es requerido.</div>
+                        <div ng-message="maxlength">Como maximo deben ser 30 caracteres.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="70">
+                    <input ng-maxlength="30" required name="text" ng-model="text" placeholder="Texto">
+                    <div ng-messages="messageForm.text.$error">
+                        <div ng-message="required">El texto es requerido.</div>
+                        <div ng-message="maxlength">Como maximo deben ser 200 caracteres.</div>
+                    </div>
+                </md-input-container>
+                <md-button type="submit" class="md-raised" flex>Enviar</md-button>
+            </form>
+        </div>
+
+    </md-toolbar>
+
+</md-content>
