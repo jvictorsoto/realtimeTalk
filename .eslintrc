@@ -7,8 +7,11 @@
         "SwitchCase": 1
       }
     ],
+    "arrow-parens": ["error", "as-needed"],
+    "import/prefer-default-export": "off",
+    "global-require": "off",
     "max-len": [2, 120, 4],
-    "no-unused-vars": [1],
+    "no-unused-vars": "warn",
     "space-before-function-paren": [
       2,
       {
@@ -29,6 +32,7 @@
     "node": true,
     "mocha": true
   },
+  "ignoreChainWithDepth": 6,
   "extends": [
     "eslint:recommended",
     "airbnb/base"
