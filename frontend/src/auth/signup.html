@@ -1,0 +1,73 @@
+<md-content layout="column">
+    <div layout="row" layout-align="center start">
+        <div hide-xs hide-sm flex-gt-sm="40" flex-gt-md="25" class="text-center">
+            <h2>One account is all you need</h2>
+            <p>Start chatting as soon as you get registered.</p>
+            <div layout="row">
+                <md-icon class="material-icons signup-left-pane">laptop</md-icon>
+                <md-icon class="material-icons signup-left-pane">tablet</md-icon>
+                <md-icon class="material-icons signup-left-pane">smartphone</md-icon>
+            </div>
+            <p>Use it in any platform. Any time.</p>
+            <md-icon class="material-icons signup-left-pane">access_time</md-icon>
+            <p>Realtime messages powered by socket.IO.</p>
+            <md-icon class="material-icons signup-left-pane">security</md-icon>
+            <p>Safe when used over HTTPS protocol.</p>
+        </div>
+        <md-card class="md-padding" flex-xs="90" flex-sm="60" flex-gt-sm="40" flex-gt-md="25">
+            <form name="$ctrl.userForm" ng-submit="$ctrl.signup();" layout="column">
+                <md-icon class="material-icons signup-form-person">account_circle</md-icon>
+                <md-input-container>
+                    <label>Username</label>
+                    <input md-no-asterisk ng-model="$ctrl.user.username" type="text" name="username" minlength="3" md-maxlength="40" ng-pattern="/^[a-zA-Z0-9]*$/"required>
+                    <div ng-messages="$ctrl.userForm.username.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="conflict">Username already taken.</div>
+                        <div ng-message="md-maxlength">Username has to be less than 30 characters long.</div>
+                        <div ng-message="minlength">Username has to be atleast 3 characters long.</div>
+                        <div ng-message="pattern">Use letters and numbers only.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Name</label>
+                    <input md-no-asterisk ng-model="$ctrl.user.name" type="text" name="name" minlength="3" md-maxlength="60" required>
+                    <div ng-messages="$ctrl.userForm.name.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="md-maxlength">Name has to be less than 60 characters long.</div>
+                        <div ng-message="minlength">Name has to be atleast 3 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Email</label>
+                    <input md-no-asterisk ng-model="$ctrl.user.email" type="email" name="email" maxlength="100" required>
+                    <div ng-messages="$ctrl.userForm.email.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="present">User not found.</div>
+                        <div ng-message="maxlength">The email has to be less than 100 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input md-no-asterisk ng-model="$ctrl.user.password" type="password" name="password" minlength="6" maxlength="100" required>
+                    <div ng-messages="$ctrl.userForm.password.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="minlength">The password must be at least 6 chars long.</div>
+                        <div ng-message="maxlength">The password has to be less than 100 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Confirm password</label>
+                    <input md-no-asterisk ng-model="confirmPassword" compare-to="$ctrl.user.password" type="password" name="confirmPassword" ng-minlength="6"  maxlength="100" required>
+                    <div ng-messages="$ctrl.userForm.confirmPassword.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="compareTo">Passwords do not match.</div>
+                        <div ng-message="valid">Invalid data</div>
+                        <div ng-message="server">Server error. Try later</div>
+                    </div>
+                </md-input-container>
+                <md-button class="md-raised md-primary no-margin" type="submit" ng-disabled="$ctrl.backgroundWorking">Sign up</md-button>
+            </form>
+        </md-card>
+    </div>
+    <p class="text-center">Already have an account? <a href="/signin">Sign in</a></p>
+</md-content>

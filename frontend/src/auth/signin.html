@@ -1,0 +1,32 @@
+<md-content layout="column">
+    <div layout="row" layout-align="center start">
+        <md-card class="md-padding" flex-xs="90" flex-sm="60" flex-gt-sm="40" flex-gt-md="25">
+            <form name="$ctrl.userForm" ng-submit="$ctrl.signin();" layout="column">
+                <md-input-container>
+                    <label>Username</label>
+                    <input md-no-asterisk ng-model="$ctrl.username" type="text" name="username" required>
+                    <div ng-messages="$ctrl.userForm.username.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="present">User not found.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input md-no-asterisk ng-model="$ctrl.password" name="password" required ng-minlength="6" type="password">
+                    <div ng-messages="$ctrl.userForm.password.$error" role="alert" multiple>
+                        <div ng-message="required">This field is required.</div>
+                        <div ng-message="minlength">The password must be at least 6 chars long.</div>
+                        <div ng-message="correct">Wrong password.</div>
+                        <div ng-message="valid">Invalid data</div>
+                        <div ng-message="server">Server error. Try later</div>
+                    </div>
+                </md-input-container>
+                <md-checkbox ng-model="$ctrl.remember" aria-label="Recordarme">
+                    Recordarme
+                </md-checkbox>
+                <md-button class="md-raised md-primary no-margin" type="submit" ng-disabled="$ctrl.backgroundWorking">Sign in</md-button>
+            </form>
+        </md-card>
+    </div>
+    <a class="text-center" href="/signup">Create an account</a>
+</md-content>
