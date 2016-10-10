@@ -8,6 +8,9 @@ const pkg = require('../package.json');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  eslint: {
+    configFile: '../.eslintrc'
+  },
   module: {
     preLoaders: [
       {

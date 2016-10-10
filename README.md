@@ -14,7 +14,7 @@ Few months later I've decided to continue this project and make it public here i
 
 # TO DO
 
-* User signup / signin (auth via JSON Web Tokens)
+* ~~User signup / signin (auth via JSON Web Tokens)~~
 
 * Private / Public chats 
 
