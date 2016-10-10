@@ -3,9 +3,9 @@ import Joi from 'joi';
 export default {
   create: {
     body: {
-      username: Joi.string().min(3).max(40).required(),
+      username: Joi.string().min(3).max(40).alphanum().required(),
       name: Joi.string().min(3).max(60).required(),
-      email: Joi.string().email().required(),
+      email: Joi.string().email().max(100).required(),
       password: Joi.string().min(6).max(100).required(),
       picture: Joi.string(),
       status: Joi.string()

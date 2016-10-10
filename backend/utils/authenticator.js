@@ -38,21 +38,10 @@ function ensureAuthenticated(req, res, next) {
       return next(new APIError('Token expired', httpStatus.UNAUTHORIZED));
     }
 
-    /**
-     * Better security compromising performance, each request DB is queried to ensure user still exists.
-     * This is a low-traffic API, so is better ensure user still exists.
-    */
-    User.get(payload.user._id).then((user) => {
-      req.user = user;    // eslint-disable-line no-param-reassign
-      return next();
-    }).catch((e) => {
-      if (e.status === httpStatus.NOT_FOUND) {
-        return next(new APIError('User no longer present in the system', httpStatus.UNAUTHORIZED));
-      }
-      next(new APIError('Impossible to fetch user'));
-    });
+    req.user = payload.user.username;
+    next();
   } catch (err) {
-    logger.warn('Token invalid from: ', req.connection.remoteAddress, err);
+    console.warn('Token invalid from: ', req.connection.remoteAddress, err);
     return next(new APIError('Token invalid. Incident reported.', httpStatus.UNAUTHORIZED));
   }
 }

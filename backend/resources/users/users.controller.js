@@ -50,7 +50,7 @@ function signin(req, res, next) {
           picture: user.picture,
           status: user.status
         },
-        token: authenticator.generateToken({ user: { _id: user._id } })
+        token: authenticator.generateToken({ user: { _id: user._id, username: user.username } })
       };
 
       res.json(payload);

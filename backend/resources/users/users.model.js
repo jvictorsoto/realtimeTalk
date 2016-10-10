@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     salt: {
       type: String,
       required: true
-    }    
+    }
   },
   picture: {
     type: String
@@ -47,14 +47,14 @@ UserSchema.method({
 });
 
 UserSchema.statics = {
-   /**
-   * Find a user by its username
-   * @param {string} username - The username of the user.
-   * @returns {Promise<User>}
-   */ 
-  getByUsername(username){
+  /**
+  * Find a user by its username
+  * @param {string} username - The username of the user.
+  * @returns {Promise<User>}
+  */
+  getByUsername(username) {
     return this.findOne({ username })
-      .then((user) => {
+      .then(user => {
         if (user) {
           return user;
         }
@@ -71,10 +71,8 @@ UserSchema.statics = {
    * @returns {Promise<{docs: User[], total: Integer, limit: Integer, offset: Integer}>}
    */
   list({ sort = '-joinedAt', filter = '', skip = 0, limit = 50 } = {}) {
-    return this.paginate({ name: new RegExp(filter, 'i') }, {
-      sort, offset: skip, limit,
-      select: { _id: 0, __v: 0, password: 0 }
-    });
+    return this.paginate({ name: new RegExp(filter, 'i') },
+    { sort, offset: skip, limit, select: { _id: 0, __v: 0, password: 0 } });
   }
 };
 
