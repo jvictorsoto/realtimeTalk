@@ -17,17 +17,17 @@ function create(req, res, next) {
     .then(() => {
       res.status(httpStatus.CREATED).send({ msg: 'User created successfully.' })
     })
-    .catch((reason) => {
-      if (reason.code = 11000) {
+    .catch(reason => {
+      if (reason.code === 11000) {
         return res.status(httpStatus.CONFLICT).json({ msg: 'username already taken' });
       }
-      next(reason);
+      return next(reason);
     });
 }
 
 
 /**
-* List users 
+* List users
 * @property {string} req.body.username - The username of the user
 * @property {string} req.body.password - The password of the user
 * @returns {{profile: { username: String, name: String, picture: String, status: String}, token: String }}
@@ -55,13 +55,13 @@ function signin(req, res, next) {
 
       res.json(payload);
     })
-    .catch((reason) => {
+    .catch(reason => {
       next(reason);
     });
 }
 
 /**
-* List users 
+* List users
 * @property {string} req.query.sort - The sorting preffered mode in mongoose spec
 * @property {string} req.query.filter - Filter results by this string
 * @property {number} req.query.skip - The number of users to skip

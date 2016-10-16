@@ -5,7 +5,7 @@ import messagesCtrl from './messages.controller';
 
 const router = express.Router();
 
-router.route('/')
+router.route('/:chatId/messages')
   .get(messagesCtrl.list)
   .post(validate(paramValidation.create), messagesCtrl.create);
 

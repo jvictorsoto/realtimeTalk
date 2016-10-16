@@ -37,6 +37,7 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  chats: [mongoose.Schema.Types.ObjectId],
   joinedAt: {
     type: Date,
     default: Date.now
