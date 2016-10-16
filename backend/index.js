@@ -29,7 +29,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 const app = express();
-const httpServer = http.Server(app);
+const httpServer = http.Server(app); // eslint-disable-line new-cap
 const io = socketIO(httpServer);
 apiEvents.build(io);
 
@@ -65,15 +65,15 @@ app.use((req, res, next) => {
 });
 
 // error handler, send stacktrace only during development
-app.use((err, req, res, next) =>		// eslint-disable-line no-unused-vars
+app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
   res.status(err.status).json({
-    message: err.message,
+    msg: err.message,
     stack: config.env === 'development' ? err.stack : {}
   })
 );
 
 // Start the express app
-httpServer.listen(config.port, (err) => {
+httpServer.listen(config.port, err => {
   if (err) {
     console.log(err);
     process.exit(1);

@@ -8,6 +8,7 @@ import 'angular-material';
 import 'angular-material/angular-material.css';
 import 'angular-local-storage/dist/angular-local-storage';
 import 'material-design-icons';
+import 'angular-timeago/dist/angular-timeago';
 
 import backend from './utils/backend.factory';
 import socketFactory from './utils/socket.factory';
@@ -22,7 +23,8 @@ import './index.less';
 export const app = 'realtimeTalk';
 
 angular
-  .module(app, ['ui.router', 'ngMessages', 'ngMaterial', 'LocalStorageModule', 'btford.socket-io'])
+  .module(app, ['ui.router', 'ngMessages', 'ngMaterial', 'LocalStorageModule', 'btford.socket-io',
+  'yaru22.angular-timeago'])
   .config(routesConfig)
   .run(authRun)
   .service('AuthInterceptor', authInterceptor)

@@ -10,15 +10,25 @@ Few months later I've decided to continue this project and make it public here i
 
 # Working
 
-* Simple single channel public chat
+* User signin / signup
+
+* Chat (channel) based messaging
 
 # TO DO
 
 * ~~User signup / signin (auth via JSON Web Tokens)~~
 
-* Private / Public chats 
+* User picture
+
+* Profile editting
+
+* ~~Private / Public chats~~
 
 * Chat creation (Public & Private)
+
+* Chat picture
+
+* Chat management: editting / deleting ...
 
 * Image support in messages with preview
 

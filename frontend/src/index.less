@@ -8,8 +8,8 @@ body {
   background-color: lightgrey;
 }
 
-.textRight {
-  text-align: right;
+.ownMessage {
+  background-color:green;
 }
 
 .no-margin {
@@ -35,7 +35,7 @@ body {
 }
 
 .chats-container {
-  height: ~"calc(100vh - 65px)";
+  height: 100%
 }
 
 .chats-container md-content {
@@ -50,21 +50,85 @@ body {
   padding-right: 0px;
 }
 
+.chat {
+  height: 70px;
+}
+
+.chat:hover {
+  background-color: lightblue;
+}
+
+.chat-active {
+  background-color: cornflowerblue;
+}
+
+.chat-active:hover {
+  background-color: cornflowerblue;
+}
+
 .messages-container {
-  height: ~"calc(100vh - 65px)";
-  width: 100%;
+  overflow-y: hidden;
 }
 
-.message-toolbar {
-  position: fixed; 
-  left:0; 
-  bottom:0;
+.message-box {
+  min-width: 200px;
+  width: auto;
+  max-width: 600px;
+  word-wrap: break-word;
+  min-height: 50px;
+  height: auto;
+  max-height: 300px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 10px;
 }
 
-.message-toolbar md-input-container {
-  margin-top: 8px;
+.message-box label {
+  margin-top: 16px;
 }
 
-.message-toolbar md-button {
-  margin-top: 5px;
+.message-box small {
+  color: grey;
+  float: right;
+  padding-bottom: 2px;
+  text-align: right;
+}
+
+.loader-container {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.md-list-item-active {
+  background: lightgrey;
+}
+
+.md-list-item-active:hover {
+  background: lightgrey;
+}
+
+.chats-dinamic-container {
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.sidenav-avatar {
+  font-size: 60px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.sidenav-search{
+  margin-left: 16px;
+  height: 45px;
 }

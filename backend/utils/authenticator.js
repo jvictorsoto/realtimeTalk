@@ -1,8 +1,7 @@
 import jwt from 'jwt-simple';
+import httpStatus from 'http-status';
 import config from '../config';
 import APIError from './APIError';
-import httpStatus from 'http-status';
-import User from '../resources/users/users.model';
 
 /**
  * Generates a new JSON Web Token
@@ -34,12 +33,12 @@ function ensureAuthenticated(req, res, next) {
     }
     const payload = jwt.decode(token, config.tokenSecret, 'HS512');
 
-    if ((new Date(payload.expire)).getTime() < (new Date).getTime()) {
+    if ((new Date(payload.expire)).getTime() < (new Date()).getTime()) {
       return next(new APIError('Token expired', httpStatus.UNAUTHORIZED));
     }
 
-    req.user = payload.user.username;
-    next();
+    req.user = payload.user.username; // eslint-disable-line no-param-reassign
+    return next();
   } catch (err) {
     console.warn('Token invalid from: ', req.connection.remoteAddress, err);
     return next(new APIError('Token invalid. Incident reported.', httpStatus.UNAUTHORIZED));

@@ -1,0 +1,36 @@
+<md-content md-whiteframe="1" layout="row" layout-fill ng-class="{'chats-dinamic-container': $ctrl.$mdMedia('gt-md')}">
+	<md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4" layout="column">
+		<md-toolbar class="md-tall md-hue-2" md-whiteframe="2">
+			<div class="md-toolbar-tools-bottom" layout="row" layout-align="start center">
+				<md-icon class="material-icons sidenav-avatar md-margin">account_circle</md-icon>
+				<div flex></div>
+				<md-button class="md-icon-button" aria-label="new chat" ng-click="$mdOpenMenu($event)">
+					<md-icon class="material-icons">add</md-icon>
+				</md-button>
+			</div>
+			<div flex></div>
+			<div layout="row" class="md-toolbar-tools-bottom">
+				<md-input-container class="no-margin sidenav-search" md-theme="dark" md-no-float>
+					<md-icon class="material-icons">search</md-icon>
+					<input ng-model="searchChat" placeholder="search a chat...">
+				</md-input-container>
+			</div>
+		</md-toolbar>
+
+		<md-list class="no-padding" flex>
+			<md-list-item class="md-3-line" ng-class="{'md-list-item-active': $ctrl.currentChat == chat}" ng-repeat="chat in $ctrl.chats | filter: { title: searchChat }"
+				ng-click="$ctrl.selectChat(chat);">
+				<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+				<div class="md-list-item-text" layout="column">
+					<h3>{{ chat.title }}</h3>
+					<h4>ererW</h4>
+					<p>
+						<time-ago from-time="{{ chat.lastActivityAt }}" format="MM/dd/yyyy '@' HH:mm"></time-ago>
+					</p>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-sidenav>
+
+	<messages chat="$ctrl.currentChat" layout-fill></messages>
+</md-content>

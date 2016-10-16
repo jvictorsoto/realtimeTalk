@@ -2,9 +2,11 @@ import Joi from 'joi';
 
 export default {
   create: {
+    params: {
+      chatId: Joi.string().regex(/^[a-f\d]{24}$/i).required()
+    },
     body: {
-      author: Joi.string().min(3).max(40).required(),
-      text: Joi.string().min(1).max(500).required()
+      text: Joi.string().min(1).max(1000).required()
     }
   }
 };
