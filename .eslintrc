@@ -10,6 +10,7 @@
     "arrow-parens": ["error", "as-needed"],
     "import/prefer-default-export": "off",
     "global-require": "off",
+    "no-underscore-dangle": "off",
     "max-len": [2, 120, 4],
     "no-unused-vars": "warn",
     "space-before-function-paren": [
