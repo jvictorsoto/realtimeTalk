@@ -4,11 +4,17 @@ import { app } from './index';
 export default routesConfig;
 
 /** @ngInject */
-function routesConfig(localStorageServiceProvider, $logProvider, $httpProvider, $stateProvider,
-  $urlRouterProvider, $locationProvider) {
+function routesConfig(localStorageServiceProvider, $logProvider, $httpProvider, timeAgoSettings,
+  $mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
   localStorageServiceProvider.setPrefix(app);
   $httpProvider.interceptors.push('AuthInterceptor');
   $logProvider.debugEnabled(config.debug);
+  timeAgoSettings.fullDateAfterSeconds = 60 * 60 * 24; // eslint-disable-line no-param-reassign
+  $mdThemingProvider.theme('default')
+    .primaryPalette(config.palete.primary)
+    .accentPalette(config.palete.accent);
+  $mdThemingProvider.theme('dark', 'default')
+    .dark();
 
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/');

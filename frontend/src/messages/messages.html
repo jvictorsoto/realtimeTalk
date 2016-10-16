@@ -1,32 +1,70 @@
-<md-content>
-    <div style="padding-bottom: 60px;">
+<div class="messages-container" layout="column" layout-align="space-between stretch" layout-fill>
+	<div layout="row" layout-align="center" class="md-padding loader-container" ng-show="$ctrl.loadingMessages">
+		<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	</div>
 
-        <md-card ng-repeat="message in $ctrl.messages" class="md-padding" ng-class="{'textRight': message.author == author}" >
-            <label ng-show="$ctrl.messages[$index - 1].author != message.author"><b>{{message.author}}:</b></label>
-            <p>{{message.text}}</p>
-        </md-card>
-    </div>
-    <md-toolbar layout="row" class="md-whiteframe-3dp" style="position: fixed; left:0; bottom:0;">
-        <div class="md-toolbar-tools">
-            <form name="messageForm" ng-submit="$ctrl.sendMessage(author, text);" layout="row" flex="100">
-                <md-input-container flex="20">
-                    <input ng-maxlength="30" required name="author" ng-model="author" placeholder="Autor">
-                    <div ng-messages="messageForm.author.$error">
-                        <div ng-message="required">El autor es requerido.</div>
-                        <div ng-message="maxlength">Como maximo deben ser 30 caracteres.</div>
-                    </div>
-                </md-input-container>
-                <md-input-container flex="70">
-                    <input ng-maxlength="30" required name="text" ng-model="text" placeholder="Texto">
-                    <div ng-messages="messageForm.text.$error">
-                        <div ng-message="required">El texto es requerido.</div>
-                        <div ng-message="maxlength">Como maximo deben ser 200 caracteres.</div>
-                    </div>
-                </md-input-container>
-                <md-button type="submit" class="md-raised" flex>Enviar</md-button>
-            </form>
-        </div>
+	<md-toolbar class="md-whiteframe-3dp">
+		<div class="md-toolbar-tools" tabindex="-1">
+			<md-button class="md-icon-button" aria-label="show chats" ng-click="$ctrl.tglSidenav();" hide-gt-sm>
+				<md-icon class="material-icons">menu</md-icon>
+			</md-button>
+			<div flex></div>
+			<h2>{{ $ctrl.chat.title }}</h2>
+			<div flex></div>
+			<md-button aria-label="Send file" class="md-icon-button">
+				<md-icon class="material-icons" md-menu-origin>attach_file</md-icon>
+			</md-button>
+			<md-menu md-position-mode="target-right bottom" md-offset="-200 20">
+				<md-button aria-label="Open chat menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+					<md-icon class="material-icons" md-menu-origin>more_vert</md-icon>
+				</md-button>
+				<md-menu-content width="4">
+					<md-menu-item ng-show="$ctrl.chat.owner === $root.loggedUser.profile.username">
+						<md-button>
+							<md-icon class="material-icons" md-menu-align-target>settings</md-icon>
+							Manage chat
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button>
+							<md-icon class="material-icons" md-menu-align-target>call_missed_outgoing</md-icon>
+							Leave
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button class="md-warn">
+							<md-icon class="material-icons" md-menu-align-target>delete</md-icon>
+							Delete chat
+						</md-button>
+					</md-menu-item>
 
-    </md-toolbar>
+				</md-menu-content>
+			</md-menu>
+		</div>
+	</md-toolbar>
 
-</md-content>
+	<md-virtual-repeat-container md-top-index="$ctrl.messagesTopIndex" md-colors="{background: 'grey-A100' }" flex>
+		<div md-virtual-repeat="message in $ctrl.messages" layout="row" flex>
+			<div flex ng-if="message.author == $root.loggedUser.profile.username"></div>
+			<md-card class="md-padding message-box" md-colors="$ctrl.getMsgColors(message)">
+				<label ng-if="$ctrl.messages[$index - 1].author !== message.author && message.author !== $root.loggedUser.profile.username">
+          <b>{{message.author}}</b>
+        </label>
+				<p>{{message.text}}</p>
+				<small><time-ago from-time="{{ message.date }}" format="MM/dd/yyyy '@' HH:mm"></time-ago></small>
+			</md-card>
+		</div>
+	</md-virtual-repeat-container>
+	<md-toolbar class="md-whiteframe-3dp">
+		<div class="md-toolbar-tools">
+			<form name="$ctrl.messageForm" ng-submit="$ctrl.sendMessage();" layout="row" layout-align="start center" flex="100">
+				<md-input-container class="no-margin sidenav-search" md-theme="dark" md-no-float md-no-asterisk flex>
+					<input ng-maxlength="1000" required name="text" ng-model="$ctrl.text" placeholder="Enter a message ..." autocomplete="off">
+				</md-input-container>
+				<md-button class="md-icon-button" type="submit" aria-label="Send">
+					<md-icon class="material-icons">send</md-icon>
+				</md-button>
+			</form>
+		</div>
+	</md-toolbar>
+</div>

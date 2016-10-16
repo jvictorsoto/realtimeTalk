@@ -14,12 +14,16 @@ class BackendService {
     return this.$http.post(`${config.backendEndpoint}/api/users`, userDTO);
   }
 
-  getMessages() {
-    return this.$http.get(`${config.backendEndpoint}/api/messages`);
+  getChats() {
+    return this.$http.get(`${config.backendEndpoint}/api/chats`);
   }
 
-  newMessage(messageDTO) {
-    return this.$http.post(`${config.backendEndpoint}/api/messages`, messageDTO);
+  getMessages(chatId) {
+    return this.$http.get(`${config.backendEndpoint}/api/chats/${chatId}/messages`);
+  }
+
+  newMessage(chatId, messageDTO) {
+    return this.$http.post(`${config.backendEndpoint}/api/chats/${chatId}/messages`, messageDTO);
   }
 }
 
