@@ -10,7 +10,9 @@ Few months later I've decided to continue this project and make it public here i
 
 # Working
 
-* Simple single channel public chat
+* User signin / signup
+
+* Chat (channel) based messaging
 
 # TO DO
 
