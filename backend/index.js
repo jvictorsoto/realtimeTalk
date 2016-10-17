@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // API endpoints binding
-app.use('/api', require('./resources/routes').default);
+app.use('/api', require('./resources/routes'));
 
 // Serve client static files
 app.use(express.static('static'));
